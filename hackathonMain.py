@@ -29,6 +29,8 @@ CHECKLIST:
 
 #functions vvv
 
+
+
 def toTime (time : str,amPm : str) -> int:
     '''
     toTime: when given a string and a time of day (AM/PM), the function returns the time as an int as army time
