@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from matplotlib import *
 from bakery import assert_equal
+import csv
 # imports for functionality
 '''
 CHECKLIST:
@@ -24,6 +25,12 @@ CHECKLIST:
 '''
 
 # constants vvv
+trafficData = [open('Data/trafficDataMon.csv'),
+         open('Data/trafficDataTue.csv'),
+         open('Data/trafficDataWed.csv'),
+         open('Data/trafficDataThu.csv'),
+         open('Data/trafficDataFri.csv'),
+         ]#All of the traffic data in .csv format
 
 # dataclasses vvv
 
