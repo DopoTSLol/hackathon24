@@ -228,17 +228,17 @@ currentDay = ""
 currentActivity = -3.0
 #^^ declaration of global variables^^
 
-print("========================\n")
-print("#    TransitTracker    #\n")
-print("========================\n")
-print("Made by: D3CL4NZ, DopoTSLol, Haiya-P, and ggellebazi\n")
-print("========================\n")
+print("========================")
+print("#    TransitTracker    #")
+print("========================")
+print("Made by: D3CL4NZ, DopoTSLol, Haiya-P, and ggellebazi")
+print("========================")
 print("TransitTracker is a simple python program designed to help you figure out where traffic currently is on the University of Delaware Campus")
 print("You will soon be prompted to put in a day of the week")
 input("Press enter to continue")
 while(repeatVar):
     if(repeatVar):
-        print("========================\n")
+        print("========================")
         print("Please input the current day of the week:")
         printOptions(0)
         
@@ -252,7 +252,7 @@ while(repeatVar):
                 if(askForBool("You have selected : "+currentDay+".\nWould you like to change your answer? (Y or N)")):
                     currentDay = "" #incase user submitted the wrong thing
         #end of currentDay while loop
-        print("\n========================\n")
+        print("========================")
         print("Please input your current relative locaion:")
         printOptions(1)
         
@@ -266,7 +266,7 @@ while(repeatVar):
                 if(askForBool("You have selected : "+currentStreet+".\nWould you like to change your answer? (Y or N)")):
                     currentStreet = "" #incase user submitted the wrong thing
         #end of currentStreet while loop
-        print("\n========================\n")
+        print("========================")
         
         while (currentActivity == -3.0):
             
@@ -280,5 +280,6 @@ while(repeatVar):
                     currentActivity = -3.0 #incase user submitted the wrong thing
             
         #end of currentHour while loop
+                    print("========================")
         print("The current activity levels at "+currentStreet+" is "+detectActivityLevels(float(currentActivity))+", or a level of "+currentActivity)#prints the current users street, as well as the current 
         repeatVar = askForBool("Would you like to continue? Y to continue, N to quit")#asks user if they want to input something again
