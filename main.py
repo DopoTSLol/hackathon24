@@ -231,49 +231,58 @@ print("the University of Delaware Campus.\n")
 print("You will soon be prompted to put in a day of the week\n")
 input("Press enter to continue")
 while(repeatVar):
-    if(repeatVar):
-        print("========================")
-        print("Please input the current day of the week:")
-        printOptions(0)
+    currentStreet = ""
+    currentDay = ""
+    currentActivity = -3.0
+    # re-initialize all the variables
+    
+    print("========================")
+    print("Please input the current day of the week:")
+    printOptions(0)
         
-        while(currentDay == ""):
-            
+    while(currentDay == ""):
+        try:
             currentDay = numToString(int(input("Please input a number between 0 and 4 [inclusive]: ")),0)#sets current day to the input of the user
-            
-            if(currentDay == ""):
-                print("ERROR: Your number was not inside the bounds of 0 and 4 [inclusive]. Please submit a number within that range.")#incase input isnt valid
-            else:
-                if(askForBool("You have selected : "+currentDay+".\nWould you like to change your answer? (Y or N): ")):
-                    currentDay = "" #incase user submitted the wrong thing
-        #end of currentDay while loop
-        print("========================")
-        print("Please input your current relative locaion:")
-        printOptions(1)
+        except:
+            print("[ERROR] Please enter a valid integer")
         
-        while(currentStreet == ""):
-            
+        if(currentDay == ""):
+            print("ERROR: Your number was not inside the bounds of 0 and 4 [inclusive]. Please submit a number within that range.")#incase input isnt valid
+        else:
+            if(askForBool("You have selected : "+currentDay+".\nWould you like to change your answer? (Y or N): ")):
+                currentDay = "" #incase user submitted the wrong thing
+    #end of currentDay while loop
+    print("========================")
+    print("Please input your current relative locaion:")
+    printOptions(1)
+        
+    while(currentStreet == ""):
+        try:
             currentStreet = numToString(int(input("Please input a number between 0 and 11 [inclusive]: ")),1)#sets the current location/street name to the input of the user
+        except:
+            print("[ERROR] Please enter a valid integer")
             
-            if(currentStreet == ""):
-                print("ERROR: Your number was not inside the bounds of 0 and 11 [inclusive]. Please submit a number within that range.")#incase input isnt valid
-            else:
-                if(askForBool("You have selected : "+currentStreet+".\nWould you like to change your answer? (Y or N): ")):
-                    currentStreet = "" #incase user submitted the wrong thing
-        #end of currentStreet while loop
-        print("========================")
+        if(currentStreet == ""):
+            print("ERROR: Your number was not inside the bounds of 0 and 11 [inclusive]. Please submit a number within that range.")#incase input isnt valid
+        else:
+            if(askForBool("You have selected : "+currentStreet+".\nWould you like to change your answer? (Y or N): ")):
+                currentStreet = "" #incase user submitted the wrong thing
+    #end of currentStreet while loop
+    print("========================")
         
-        while (currentActivity == -3.0):
-            
+    while (currentActivity == -3.0):
+        try:
             currentHour = int(input("Please input an hour of the day between 6 and 22 [inclusive]: "))#declaration of local currentHour variable
+        except:
+            print("[ERROR] Please enter a valid integer")
+        currentActivity = getTraffic(currentDay, currentHour ,currentStreet)
+        if(currentActivity == -3.0):
+            print("ERROR: Your number was not inside the bounds of 6 and 22 [inclusive]. Please submit a number within that range.")#incase input isnt valid
+        else:
+            if(askForBool("You have selected the hour: "+str(currentHour)+".\nWould you like to change your answer? (Y or N): ")):
+                currentActivity = -3.0 #incase user submitted the wrong thing
             
-            currentActivity = getTraffic(currentDay, currentHour ,currentStreet)
-            if(currentActivity == -3.0):
-                print("ERROR: Your number was not inside the bounds of 6 and 22 [inclusive]. Please submit a number within that range.")#incase input isnt valid
-            else:
-                if(askForBool("You have selected the hour: "+str(currentHour)+".\nWould you like to change your answer? (Y or N): ")):
-                    currentActivity = -3.0 #incase user submitted the wrong thing
-            
-        #end of currentHour while loop
-                    print("========================")
-        print("\nThe current activity level at "+currentStreet+" is "+detectActivityLevels(float(currentActivity))+" ("+currentActivity+")\n")#prints the current users street, as well as the current 
-        repeatVar = askForBool("Would you like to continue? Y to continue, N to quit: ")#asks user if they want to input something again
+    #end of currentHour while loop
+                print("========================")
+    print("\nThe current activity level at "+currentStreet+" is "+detectActivityLevels(float(currentActivity))+" ("+currentActivity+")\n")#prints the current users street, as well as the current 
+    repeatVar = askForBool("Would you like to view another? Y to continue, N to quit: ")#asks user if they want to input something again
