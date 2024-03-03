@@ -236,7 +236,7 @@ while(repeatVar):
     currentActivity = -3.0
     # re-initialize all the variables
     
-    print("========================")
+    print("====================================================")
     print("Please input the current day of the week:")
     printOptions(0)
         
@@ -252,7 +252,7 @@ while(repeatVar):
             if(askForBool("You have selected : "+currentDay+".\nWould you like to change your answer? (Y or N): ")):
                 currentDay = "" #incase user submitted the wrong thing
     #end of currentDay while loop
-    print("========================")
+    print("====================================================")
     print("Please input your current relative locaion:")
     printOptions(1)
         
@@ -268,7 +268,7 @@ while(repeatVar):
             if(askForBool("You have selected : "+currentStreet+".\nWould you like to change your answer? (Y or N): ")):
                 currentStreet = "" #incase user submitted the wrong thing
     #end of currentStreet while loop
-    print("========================")
+    print("====================================================")
         
     while (currentActivity == -3.0):
         try:
@@ -283,6 +283,6 @@ while(repeatVar):
                 currentActivity = -3.0 #incase user submitted the wrong thing
             
     #end of currentHour while loop
-                print("========================")
+                print("====================================================")
     print("\nThe current activity level at "+currentStreet+" is "+detectActivityLevels(float(currentActivity))+" ("+currentActivity+")\n")#prints the current users street, as well as the current 
     repeatVar = askForBool("Would you like to view another? Y to continue, N to quit: ")#asks user if they want to input something again
