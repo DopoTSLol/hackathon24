@@ -73,9 +73,11 @@ TEST CASES:
 
 # start of actual code lol
 
+print("Hello :D")
+print()
 print("=======================")
 print("#    TransitTracer    #")
 print("=======================")
 print()
 print("Made by: D3CL4NZ, DopoTSLol, Haiya-P, and ggellebazi")
-int choice = input("Please enter your choice: ")
+choice = input("Please enter your choice: ")
