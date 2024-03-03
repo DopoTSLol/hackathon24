@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
 
-from dataclasses import dataclass
-from matplotlib import *
-#from bakery import assert_equal
 import csv
 # imports for functionality
 '''
@@ -89,40 +86,40 @@ def getTraffic(d:str, t:int, s:str) -> float:
     
     
     if(d == "Mon"):
-        with open('data/trafficDataMon.csv', 'r') as csv_file:
+        with open('data/trafficDataMon.csv', 'r', encoding='utf-8') as csv_file:
             reader = csv.reader(csv_file, delimiter=",")
             
             data = list(reader)
             csv_file.close()
-            return data[row][col]
+            return float(data[row][col])
     elif(d == "Tue"):
-        with open('data/trafficDataTue.csv', 'r') as csv_file:
+        with open('data/trafficDataTue.csv', 'r', encoding='utf-8') as csv_file:
             reader = csv.reader(csv_file, delimiter=",")
             
             data = list(reader)
             csv_file.close()
-            return data[row][col]
+            return float(data[row][col])
     elif(d == "Wed"):
-        with open('data/trafficDataWed.csv', 'r') as csv_file:
+        with open('data/trafficDataWed.csv', 'r', encoding='utf-8') as csv_file:
             reader = csv.reader(csv_file, delimiter=",")
             
             data = list(reader)
             csv_file.close()
-            return data[row][col]
+            return float(data[row][col])
     elif(d == "Thu"):
-        with open('data/trafficDataThu.csv', 'r') as csv_file:
+        with open('data/trafficDataThu.csv', 'r', encoding='utf-8') as csv_file:
             reader = csv.reader(csv_file, delimiter=",")
             
             data = list(reader)
             csv_file.close()
-            return data[row][col]
+            return float(data[row][col])
     elif(d == "Fri"):
-        with open('data/trafficDataFri.csv', 'r') as csv_file:
+        with open('data/trafficDataFri.csv', 'r', encoding='utf-8') as csv_file:
             reader = csv.reader(csv_file, delimiter=",")
             
             data = list(reader)
             csv_file.close()
-            return data[row][col]
+            return float(data[row][col])
     else:
         print("[ERROR] Invalid day!")
         return -655.0
@@ -284,5 +281,5 @@ while(repeatVar):
             
     #end of currentHour while loop
                 print("====================================================")
-    print("\nThe current activity level at "+currentStreet+" is "+detectActivityLevels(float(currentActivity))+" ("+currentActivity+")\n")#prints the current users street, as well as the current 
+    print("\nThe current activity level at "+currentStreet+" is "+detectActivityLevels(float(currentActivity))+" ("+str(currentActivity)+")\n")#prints the current users street, as well as the current 
     repeatVar = askForBool("Would you like to view another? Y to continue, N to quit: ")#asks user if they want to input something again
