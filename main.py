@@ -25,17 +25,11 @@ CHECKLIST:
 '''
 
 # constants vvv
-#trafficData = [open('data/trafficDataMon.csv'),
-#         open('data/trafficDataTue.csv'),
-#         open('data/trafficDataWed.csv'),
-#         open('data/trafficDataThu.csv'),
-#         open('data/trafficDataFri.csv'),
-#         ]#All of the traffic data in .csv format
-
+STREET = ["S College Ave","W DE Ave","W Main St", "E Main St", "S Main St", "E DE Ave","Academy St", "N College Ave", "David Hollowell Dr", "New London Road", "New London Ave", "E Park Pl"]
+DATE = ["Mon","Tue","Wed","Thu","Fri"]
 # dataclasses vvv
 
 #functions vvv
-
 def getTraffic(d:str, t:int, s:str) -> float:
     """
     getTraffic: Gets the traffic for the specified day, time, and street.
@@ -83,7 +77,7 @@ def getTraffic(d:str, t:int, s:str) -> float:
         print("[ERROR] Invalid street!")
         return -2.0
         
-    if((t >= 6) and (t <= 17)):
+    if((t >= 6) and (t <= 22)):
         col = t - 5
     else:
         print("[ERROR] Invalid time!")
@@ -174,13 +168,117 @@ TEST CASES:
     assert_equal(toTime("12:59","AM"),59)#Midnight case
 '''
 #end of function toTime
+        
+def printOptions(typeOfInput: int):
+    iterationVar = 0
+    if(typeOfInput == 0):
+        for date in DATE:
+            print(str(iterationVar)+" : "+date)
+            iterationVar += 1
+    else:
+        for street in STREET:
+            print(str(iterationVar)+" : " + street)
+            iterationVar += 1
+    print("\n========================\n")#formatting line
+#end of function printOptions
+    
+def askForBool(message : str) -> bool:
+    userAnswer = ""
+    while(userAnswer.upper() != "Y" and userAnswer.upper() != "N"):
+        userAnswer = input(message+"\n")
+        if(userAnswer.upper() != "Y" and userAnswer.upper() != "N"):
+            print("ERROR: Please input the characters Y or N")
+    
+    if(userAnswer.upper() == "Y"):
+        return True
+    else:
+        return False
+#end of function askForBool
+    
+def numToString(userInput : int, typeOfInput: int) -> str:
+    if(typeOfInput == 0):
+        if(len(DATE)-1 < userInput or 0 > userInput):
+            return "" #failsafe case
+        else:
+            return DATE[userInput] #returns the date
+    else:
+        if(len(STREET)-1 < userInput or 0 > userInput):
+            return "" #failsafe case
+        else:
+            return STREET[userInput] #returns the street
+#end of function numToString
+        
+def detectActivityLevels(activityLevels : float)-> str:
+    if(activityLevels == 1.0):
+        return "little to none."
+    elif(activityLevels <= 1.5):
+        return "small."
+    elif(activityLevels <= 2.0):
+        return "moderate."
+    elif(activityLevels <= 2.5):
+        return "high."
+    else:
+        return "extreme."
 
 # start of actual code lol
 
-print("Hello :D")
-print()
-print("========================")
-print("#    TransitTracker    #")
-print("========================")
-print()
-print("Made by: D3CL4NZ, DopoTSLol, Haiya-P, and ggellebazi")
+repeatVar = True
+currentStreet = ""
+currentDay = ""
+currentActivity = -3.0
+#^^ declaration of global variables^^
+
+print("========================\n")
+print("#    TransitTracker    #\n")
+print("========================\n")
+print("Made by: D3CL4NZ, DopoTSLol, Haiya-P, and ggellebazi\n")
+print("========================\n")
+print("TransitTracker is a simple python program designed to help you figure out where traffic currently is on the University of Delaware Campus")
+print("You will soon be prompted to put in a day of the week")
+input("Press enter to continue")
+while(repeatVar):
+    if(repeatVar):
+        print("========================\n")
+        print("Please input the current day of the week:")
+        printOptions(0)
+        
+        while(currentDay == ""):
+            
+            currentDay = numToString(int(input("Please input a number between 0 and 4 [inclusive]")),0)#sets current day to the input of the user
+            
+            if(currentDay == ""):
+                print("ERROR: Your number was not inside the bounds of 0 and 4 [inclusive]. Please submit a number within that range")#incase input isnt valid
+            else:
+                if(askForBool("You have selected : "+currentDay+".\nWould you like to change your answer? (Y or N)")):
+                    currentDay = "" #incase user submitted the wrong thing
+        #end of currentDay while loop
+        print("\n========================\n")
+        print("Please input your current relative locaion:")
+        printOptions(1)
+        
+        while(currentStreet == ""):
+            
+            currentStreet = numToString(int(input("Please input a number between 0 and 11 [inclusive]")),1)#sets the current location/street name to the input of the user
+            
+            if(currentStreet == ""):
+                print("ERROR: Your number was not inside the bounds of 0 and 11 [inclusive]. Please submit a number within that range")#incase input isnt valid
+            else:
+                if(askForBool("You have selected : "+currentStreet+".\nWould you like to change your answer? (Y or N)")):
+                    currentStreet = "" #incase user submitted the wrong thing
+        #end of currentStreet while loop
+        print("\n========================\n")
+        
+        while (currentActivity == -3.0):
+            
+            currentHour = int(input("Please input an hour of the day in army time in army time between 6 and 22 [inclusive]"))#declaration of local currentHour variable
+            
+            currentActivity = getTraffic(currentDay, currentHour ,currentStreet)
+            if(currentActivity == -3.0):
+                print("ERROR: Your number was not inside the bounds of 6 and 22 [inclusive]. Please submit a number within that range")#incase input isnt valid
+            else:
+                if(askForBool("You have selected the hour: "+str(currentHour)+".\nWould you like to change your answer? (Y or N)")):
+                    currentActivity = -3.0 #incase user submitted the wrong thing
+            
+        #end of currentHour while loop
+        print("The current activity levels at "+currentStreet+" is "+detectActivityLevels(float(currentActivity))+", or a level of "+currentActivity)#prints the current users street, as well as the current 
+        repeatVar = askForBool("Would you like to continue? Y to continue, N to quit")#asks user if they want to input something again
