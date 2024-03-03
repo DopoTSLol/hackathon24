@@ -11,7 +11,7 @@ CHECKLIST:
             ? []
     DATA:
         Formatting []
-        
+
 '''
 '''
     funcName:
@@ -21,7 +21,7 @@ CHECKLIST:
     
     Returns:
         type:
-    
+
 '''
 
 # constants vvv
@@ -71,3 +71,11 @@ TEST CASES:
 '''
 #end of function toTime
 
+# start of actual code lol
+
+print("=======================")
+print("#    TransitTracer    #")
+print("=======================")
+print()
+print("Made by: D3CL4NZ, DopoTSLol, Haiya-P, and ggellebazi")
+int choice = input("Please enter your choice: ")
